@@ -1,4 +1,3 @@
-console.log("hello world");
 
 let timerLabel = document.getElementById("timerLabel");
 let alarmSound = document.getElementById("alarmsound");
@@ -44,8 +43,11 @@ function decrementTimer() {
 function stopTimer() {
   if (seconds == 0 && minutes == 0) {
     clearInterval(Clock);
-    timerLabel.textContent = "Timer is up!";
     alarmSound.play();
+    timerLabel.textContent = "Time is up!";
+    alert("Time is up!")
+    alarmSound.pause();
+
   }
 }
 
