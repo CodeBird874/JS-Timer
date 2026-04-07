@@ -27,18 +27,21 @@ function gatherInput() {
 function checkInputValidity() {
   if (minutes > 59 || minutes < 0) {
 
-    alert("Please enter a valid time!");
 
     invalidTime = true;
-  } else {
-
   }
+
   if (seconds > 59 || seconds < 0) {
 
-    alert("Please enter a valid time!");
     invalidTime = true;
   }
 
+  if (isNaN(minutes) || isNaN(seconds)) {
+    invalidTime = true;
+  }
+  if (invalidTime) {
+    alert("Please enter a valid time.")
+  }
 }
 
 
