@@ -4,7 +4,6 @@ let alarmSound = document.getElementById("alarmsound");
 let minutes;
 let seconds;
 let invalidTime = false;
-
 alarmSound.loop = true;
 // input from user is entered and processed
 function gatherInput() {
@@ -19,6 +18,13 @@ function gatherInput() {
 
   minutes = parseInt(enterMinutes);
   seconds = parseInt(enterSeconds);
+
+}
+
+
+
+// checks input and sets a bool off that prevents the clock from doing anything when it is created.
+function checkInputValidity() {
   if (minutes > 59 || minutes < 0) {
 
     alert("Please enter a valid time!");
@@ -33,27 +39,14 @@ function gatherInput() {
     invalidTime = true;
   }
 
-
 }
 
 
 
 
-
-
-gatherInput();
-formatTimer();
-
-const Clock = setInterval(tick, 1000);
-
-
-
-
-
-
-
+// checks to see if minutes/seconds are less than 9, then adds/removes a 0 for proper formatting
 function formatTimer() {
-  if (minutes < 10) {
+  if (minutes <= 9) {
 
     timerLabel.textContent = "0" + minutes + ":" + seconds;
   }
@@ -67,18 +60,25 @@ function formatTimer() {
   if (minutes > 9 && seconds > 9) {
     timerLabel.textContent = minutes + ":" + seconds;
   }
-}
-
-
-function calculateTime() {
-  if (minutes > 0) {
-    if (seconds == 0) {
-      minutes--;
-      seconds = 60;
-    }
+  // formats label for incorrect input.
+  if (invalidTime) {
+    timerLabel.textContent = "Please enter a valid time."
   }
 }
+
+// prevents minutes from hitting negative and removes a minute when 60 seconds has passed.
+function calculateTime() {
+  if (seconds == 0 && minutes > 0) {
+    minutes--;
+    // sets seconds to a a full minute. 
+    seconds = 60;
+
+  }
+}
+
+// ticks clock if valid input was entered.
 function decrementTimer() {
+
   if (!invalidTime) {
 
     seconds--;
@@ -87,6 +87,8 @@ function decrementTimer() {
 }
 
 function stopTimer() {
+  // if seconds are gone, and minutes are gone, remove the clock change the text,
+  // and notify the user time is up.
   if (seconds < 0 && minutes == 0) {
     clearInterval(Clock);
     alarmSound.play();
@@ -95,13 +97,18 @@ function stopTimer() {
     alarmSound.pause();
 
   }
+
 }
 
-
-
+// every timer function combined.
 function tick() {
   calculateTime();
   decrementTimer();
   formatTimer();
   stopTimer();
 }
+
+gatherInput();
+checkInputValidity();
+formatTimer();
+const Clock = setInterval(tick, 1000);
