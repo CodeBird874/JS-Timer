@@ -5,7 +5,7 @@ let minutes;
 let seconds;
 let invalidTime = false;
 alarmSound.loop = true;
-// input from user is entered and processed
+// input from prompt is tprompt is turned from a string to an int.
 function gatherInput() {
 
   let enterMinutes = prompt("Please enter minutes: (must be a positive number below 60)", "10");
@@ -23,7 +23,8 @@ function gatherInput() {
 
 
 
-// checks input and sets a bool off that prevents the clock from doing anything when it is created.
+// checks input and sets a bool off that prevents the clock from doing anything when it is created 
+// if input is more than 60 or not entered.
 function checkInputValidity() {
   if (minutes > 59 || minutes < 0) {
 
