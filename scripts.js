@@ -1,9 +1,16 @@
-
+// HTML objects
 let timerLabel = document.getElementById("timerLabel");
 let alarmSound = document.getElementById("alarmsound");
+// actual units of time
 let hours;
 let minutes;
 let seconds;
+
+// labels that format timer
+let hourLabel;
+let minuteLabel;
+let secondLabel;
+// other variables
 let invalidTime = false;
 alarmSound.loop = true;
 // input from prompt is tprompt is turned from a string to an int.
@@ -58,28 +65,32 @@ function checkInputValidity() {
 
 
 // checks to see if minutes/seconds are less than 9, then adds/removes a 0 for proper formatting
+// to the labels
 function formatTimer() {
+  if (hours <= 9) {
+    hourLabel = "0" + hours;
+  } else {
+    hourLabel = hours;
+  }
   if (minutes <= 9) {
-
-    timerLabel.textContent = hours + ":" + "0" + minutes + ":" + seconds;
+    minuteLabel = "0" + minutes;
+  } else {
+    minuteLabel = minutes;
   }
-
   if (seconds <= 9) {
-    timerLabel.textContent = hours + ":" + minutes + ":" + "0" + seconds;
-  }
-  if (minutes <= 9 && seconds <= 9) {
-    timerLabel.textContent = hours + "0" + minutes + ":" + "0" + seconds;
-  }
-  if (minutes > 9 && seconds > 9) {
-    timerLabel.textContent = hours + ":" + minutes + ":" + seconds;
+    secondLabel = "0" + seconds;
+  } else {
+    secondLabel = seconds;
   }
   // formats label for incorrect input.
   if (invalidTime) {
     timerLabel.textContent = "Please enter a valid time."
+  } else {
+    timerLabel.textContent = hourLabel + ":" + minuteLabel + ":" + secondLabel;
   }
 }
 
-// prevents minutes from hitting negative and removes a minute when 60 seconds has passed.
+// prevents minutes/hours from hitting negative and removes a minute when 60 seconds has passed.
 function calculateTime() {
   if (minutes == 0 && hours > 0) {
     hours--;
@@ -103,7 +114,7 @@ function decrementTimer() {
 }
 
 function stopTimer() {
-  // if seconds are gone, and minutes are gone, remove the clock change the text,
+  // if all units are gone, remove the clock, change the text,
   // and notify the user time is up.
   if (seconds < 0 && minutes == 0 && hours == 0) {
     clearInterval(Clock);
