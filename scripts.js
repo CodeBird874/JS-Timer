@@ -65,8 +65,10 @@ function checkInputValidity() {
 
 
 // checks to see if minutes/seconds are less than 9, then adds/removes a 0 for proper formatting
-// to the labels
-function formatTimer() {
+// to the labels.
+
+
+function formatLabels() {
   if (hours <= 9) {
     hourLabel = "0" + hours;
   } else {
@@ -82,6 +84,12 @@ function formatTimer() {
   } else {
     secondLabel = seconds;
   }
+}
+
+
+function formatTimer() {
+
+  formatLabels();
   // formats label for incorrect input.
   if (invalidTime) {
     timerLabel.textContent = "Please enter a valid time."
