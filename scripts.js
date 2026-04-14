@@ -13,7 +13,7 @@ let secondLabel;
 // other variables
 let invalidTime = false;
 alarmSound.loop = true;
-// input from prompt is tprompt is turned from a string to an int.
+// input from prompt is turned from a string to an int.
 function gatherInput() {
 
 
@@ -90,6 +90,7 @@ function formatLabels() {
 function formatTimer() {
 
   formatLabels();
+
   // formats label for incorrect input.
   if (invalidTime) {
     timerLabel.textContent = "Please enter a valid time."
