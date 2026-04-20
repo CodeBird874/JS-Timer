@@ -10,6 +10,7 @@ let seconds;
 let hourLabel;
 let minuteLabel;
 let secondLabel;
+let fullLabel;
 // other variables
 let invalidTime = false;
 alarmSound.loop = true;
@@ -84,6 +85,8 @@ function formatLabels() {
   } else {
     secondLabel = seconds;
   }
+
+  fullLabel = hourLabel + ":" + minuteLabel + ":" + secondLabel;
 }
 
 
@@ -95,7 +98,8 @@ function formatTimer() {
   if (invalidTime) {
     timerLabel.textContent = "Please enter a valid time."
   } else {
-    timerLabel.textContent = hourLabel + ":" + minuteLabel + ":" + secondLabel;
+    timerLabel.textContent = fullLabel;
+    document.title = fullLabel;
   }
 }
 
@@ -129,6 +133,7 @@ function stopTimer() {
     clearInterval(Clock);
     alarmSound.play();
     timerLabel.textContent = "Time is up!";
+    document.title = "Time is up!";
     alert("Time is up!")
     alarmSound.pause();
 

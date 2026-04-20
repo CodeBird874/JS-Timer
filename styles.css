@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&display=swap');
+
+
 body {
-  background-color: mediumslateblue;
+  background-color: black;
 }
 
 #con {
@@ -13,6 +16,14 @@ body {
   padding: 20px;
 }
 
+#tag {
+  color: #6aaaed;
+  font-size: 1.2vh;
+}
+
 #timerLabel {
   font-size: 14vh;
+  font-family: "Bitcount Grid Double", system-ui;
+  font-weight: 400;
+  color: #6aaaed;
 }
