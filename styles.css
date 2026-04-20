@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Cantarell:wght@400;700&display=swap');
 
 body {
   background-color: black;
@@ -19,6 +19,8 @@ body {
 #tag {
   color: #6aaaed;
   font-size: 1.2vh;
+  font-family: "Cantarell", system-ui;
+  font-weight: 800;
 }
 
 #timerLabel {
